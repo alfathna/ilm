@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Public;
 
 use App\Http\Controllers\Controller;
-use App\Models\StaticPage;
+use App\Models\WebSetting;
 use App\Services\SeoService;
 use Illuminate\View\View;
 
@@ -14,14 +14,14 @@ class StaticPageController extends Controller
     ) {}
 
     /**
-     * Display the About page.
+     * Display the About page (dynamic via WebSetting).
      */
     public function about(): View
     {
-        $page = StaticPage::where('slug', 'tentang-kami')->firstOrFail();
-        $seo = $this->seoService->generateForPage($page->title, 'Tentang ' . config('news_portal.site.name'));
+        $settings = WebSetting::all_cached();
+        $seo = $this->seoService->generateForPage('Tentang Kami', 'Tentang ' . config('news_portal.site.name'));
 
-        return view('public.static.about', compact('page', 'seo'));
+        return view('public.static.about', compact('settings', 'seo'));
     }
 
     /**

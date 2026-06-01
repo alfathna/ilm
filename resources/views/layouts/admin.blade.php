@@ -125,6 +125,7 @@
                         <a href="{{ route('admin.web.logo') }}" class="block px-4 py-2 text-[11px] font-bold uppercase tracking-tight {{ request()->routeIs('admin.web.logo') ? 'text-red-500' : 'text-gray-500 hover:text-red-500' }}">• Logo</a>
                         <a href="{{ route('admin.web.popup') }}" class="block px-4 py-2 text-[11px] font-bold uppercase tracking-tight {{ request()->routeIs('admin.web.popup') ? 'text-red-500' : 'text-gray-500 hover:text-red-500' }}">• Popup</a>
                         <a href="{{ route('admin.web.tema') }}" class="block px-4 py-2 text-[11px] font-bold uppercase tracking-tight {{ request()->routeIs('admin.web.tema') ? 'text-red-500' : 'text-gray-500 hover:text-red-500' }}">• Tema</a>
+                        <a href="{{ route('admin.web.about') }}" class="block px-4 py-2 text-[11px] font-bold uppercase tracking-tight {{ request()->routeIs('admin.web.about') ? 'text-red-500' : 'text-gray-500 hover:text-red-500' }}">• Tentang Kami</a>
                         <a href="{{ route('admin.categories.index') }}" class="block px-4 py-2 text-[11px] font-bold uppercase tracking-tight {{ request()->routeIs('admin.categories.*') ? 'text-red-500' : 'text-gray-500 hover:text-red-500' }}">• Menu</a>
                         <a href="{{ route('admin.editorial-teams.index') }}" class="block px-4 py-2 text-[11px] font-bold uppercase tracking-tight {{ request()->routeIs('admin.editorial-teams.*') ? 'text-red-500' : 'text-gray-500 hover:text-red-500' }}">• Tim Redaksi</a>
                     </div>

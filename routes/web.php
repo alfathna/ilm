@@ -83,6 +83,8 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'role:admin,redaktur
         Route::post('/web/tema',     [Admin\WebSettingController::class, 'saveTema'])->name('web.tema.save');
         Route::get('/web/identitas', [Admin\WebSettingController::class, 'identitas'])->name('web.identitas');
         Route::post('/web/identitas',[Admin\WebSettingController::class, 'saveIdentitas'])->name('web.identitas.save');
+        Route::get('/web/tentang-kami',  [Admin\WebSettingController::class, 'aboutPage'])->name('web.about');
+        Route::post('/web/tentang-kami', [Admin\WebSettingController::class, 'saveAboutPage'])->name('web.about.save');
 
         // Kata Jorok (word filter) - now dynamic
         Route::get('/kata-jorok', [Admin\KataJorokController::class, 'index'])->name('kata-jorok');
