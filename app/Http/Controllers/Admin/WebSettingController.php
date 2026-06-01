@@ -151,4 +151,51 @@ class WebSettingController extends Controller
 
         return back()->with('success', 'Identitas website berhasil disimpan.');
     }
+
+    // ─── TENTANG KAMI ──────────────────────────────────────────────────────────
+
+    public function aboutPage(): View
+    {
+        $settings = WebSetting::all_cached();
+
+        return view('admin.web.tentang-kami', compact('settings'));
+    }
+
+    public function saveAboutPage(Request $request): RedirectResponse
+    {
+        $request->validate([
+            'about_image'       => 'nullable|image|mimes:png,jpg,jpeg,webp|max:2048',
+            'about_description' => 'nullable|string|max:2000',
+            'about_visi'        => 'nullable|string|max:1000',
+            'about_misi'        => 'nullable|string|max:2000',
+            'about_alamat'      => 'nullable|string|max:255',
+            'about_whatsapp'    => 'nullable|string|max:30',
+            'about_email'       => 'nullable|email|max:100',
+        ], [
+            'about_image.image' => 'File harus berupa gambar.',
+            'about_image.max'   => 'Ukuran gambar maksimal 2 MB.',
+            'about_email.email' => 'Format email tidak valid.',
+        ]);
+
+        // Handle image upload
+        if ($request->hasFile('about_image')) {
+            $oldPath = WebSetting::get('about_image');
+            if ($oldPath && Storage::disk('public')->exists($oldPath)) {
+                Storage::disk('public')->delete($oldPath);
+            }
+            $path = $request->file('about_image')->store('web/about', 'public');
+            WebSetting::set('about_image', $path);
+        }
+
+        $fields = [
+            'about_description', 'about_visi', 'about_misi',
+            'about_alamat', 'about_whatsapp', 'about_email',
+        ];
+
+        foreach ($fields as $field) {
+            WebSetting::set($field, $request->input($field));
+        }
+
+        return back()->with('success', 'Halaman Tentang Kami berhasil diperbarui.');
+    }
 }

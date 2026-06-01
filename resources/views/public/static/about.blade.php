@@ -2,184 +2,158 @@
 
 @section('content')
 <div class="container-custom py-16 max-w-4xl">
-    <div class="flex flex-col items-center mb-12">
-        <div class="flex items-center gap-4 mb-8 w-full">
-            <div class="flex-1 flex flex-col gap-[2px]">
-                <div class="h-[3px] bg-primary w-full"></div>
-                <div class="h-[3px] bg-primary w-full"></div>
-            </div>
-            <h1 class="text-3xl font-black text-primary tracking-tighter px-6 whitespace-nowrap uppercase">
+
+    {{-- ── HEADER ── --}}
+    <div class="flex items-center gap-4 mb-10 w-full">
+        <div class="flex-1 flex flex-col gap-[2px]">
+            <div class="h-[3px] bg-primary w-full"></div>
+            <div class="h-[3px] bg-primary w-full"></div>
+        </div>
+        <h1 class="text-3xl font-black text-primary tracking-tighter px-6 whitespace-nowrap uppercase">
+            Tentang Kami
+        </h1>
+        <div class="flex-1 flex flex-col gap-[2px]">
+            <div class="h-[3px] bg-primary w-full"></div>
+            <div class="h-[3px] bg-primary w-full"></div>
+        </div>
+    </div>
+
+    {{-- ── GAMBAR ── --}}
+    @php $aboutImagePath = $settings['about_image'] ?? null; @endphp
+    <div class="w-full aspect-video bg-gray-100 rounded-2xl overflow-hidden mb-12 shadow-xl border border-gray-100">
+        @if($aboutImagePath)
+            <img loading="lazy"
+                 src="{{ Storage::url($aboutImagePath) }}"
+                 alt="Tentang Kami"
+                 class="w-full h-full object-cover">
+        @else
+            <img loading="lazy"
+                 src="https://images.unsplash.com/photo-1495020689067-958852a7765e?auto=format&fit=crop&q=80&w=1200"
+                 alt="Info Lantas Mojokerto Office"
+                 class="w-full h-full object-cover">
+        @endif
+    </div>
+
+    <div class="space-y-12">
+
+        {{-- ── DESKRIPSI ── --}}
+        @php $aboutDescription = $settings['about_description'] ?? null; @endphp
+        @if($aboutDescription)
+        <section>
+            <h2 class="text-2xl font-black text-gray-800 uppercase tracking-tight mb-4 border-l-4 border-primary pl-4">
                 Tentang Kami
-            </h1>
-            <div class="flex-1 flex flex-col gap-[2px]">
-                <div class="h-[3px] bg-primary w-full"></div>
-                <div class="h-[3px] bg-primary w-full"></div>
-            </div>
-        </div>
-
-        <div class="w-full aspect-video bg-gray-100 rounded-lg overflow-hidden mb-12 shadow-xl border border-gray-100">
-            <img loading="lazy" src="https://images.unsplash.com/photo-1495020689067-958852a7765e?auto=format&fit=crop&q=80&w=1200" alt="Info Lantas Mojokerto Office" class="w-full h-full object-cover" loading="lazy">
-        </div>
-    </div>
-
-    <div class="prose prose-lg max-w-none text-gray-600 leading-relaxed space-y-8">
-        <section>
-            <h2 class="text-2xl font-black text-gray-800 uppercase tracking-tight mb-4 border-l-4 border-red-600 pl-4">
-                Visi & Misi
             </h2>
-            <p>
-                <strong>Info Lantas Mojokerto</strong> hadir sebagai portal berita terpercaya yang berfokus pada dinamika wilayah Mojokerto Raya. Kami berkomitmen untuk menyajikan informasi yang akurat, cepat, dan berimbang bagi masyarakat Mojokerto dan sekitarnya.
-            </p>
-            <p>
-                Visi kami adalah menjadi rujukan utama informasi lalu lintas, pelayanan publik, dan dinamika sosial di Mojokerto, serta berperan aktif dalam mencerdaskan kehidupan bangsa melalui jurnalisme yang berkualitas dan beretika.
-            </p>
-        </section>
-
-        <section>
-            <h2 class="text-2xl font-black text-gray-800 uppercase tracking-tight mb-4 border-l-4 border-red-600 pl-4">
-                Nilai Utama
-            </h2>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-6">
-                <div class="p-6 bg-red-50 rounded-xl border border-red-100">
-                    <h3 class="font-bold text-primary mb-2">Akurasi</h3>
-                    <p class="text-sm">Setiap berita melalui proses verifikasi ketat sebelum sampai ke tangan pembaca.</p>
-                </div>
-                <div class="p-6 bg-red-50 rounded-xl border border-red-100">
-                    <h3 class="font-bold text-primary mb-2">Interaktivitas</h3>
-                    <p class="text-sm">Kami membangun jembatan komunikasi dua arah antara penyedia layanan dan masyarakat.</p>
-                </div>
-                <div class="p-6 bg-red-50 rounded-xl border border-red-100">
-                    <h3 class="font-bold text-primary mb-2">Integritas</h3>
-                    <p class="text-sm">Menjaga independensi jurnalisme demi kepentingan publik di atas segalanya.</p>
-                </div>
+            <div class="prose prose-lg max-w-none text-gray-600 leading-relaxed">
+                <p>{{ $aboutDescription }}</p>
             </div>
         </section>
+        @endif
 
+        {{-- ── VISI ── --}}
+        @php $aboutVisi = $settings['about_visi'] ?? null; @endphp
+        @if($aboutVisi)
         <section>
-            <h2 class="text-2xl font-black text-gray-800 uppercase tracking-tight mb-16 border-l-4 border-red-600 pl-4">
-                Struktur Organisasi
+            <h2 class="text-2xl font-black text-gray-800 uppercase tracking-tight mb-4 border-l-4 border-primary pl-4">
+                Visi
             </h2>
-
-            <div class="relative flex flex-col items-center pb-20">
-                {{-- Vertical trunk --}}
-                <div class="absolute top-0 bottom-32 left-1/2 w-0.5 bg-gradient-to-b from-red-600 via-red-500 to-gray-200 -translate-x-1/2 -z-10 hidden md:block"></div>
-
-                {{-- Level 1: Pemimpin Umum --}}
-                <div class="relative mb-20 z-10">
-                    <div class="bg-red-800 text-white p-5 rounded-xl shadow-[0_10px_25px_-5px_rgba(185,28,28,0.4)] w-80 text-center border-b-4 border-red-950 transition-all hover:-translate-y-1">
-                        <h3 class="text-[10px] font-black uppercase tracking-[0.3em] mb-1 opacity-70">Pemimpin Umum</h3>
-                        <p class="text-2xl font-black">Bambang Wijaya</p>
-                    </div>
-                </div>
-
-                {{-- Level 2: Pemimpin Redaksi --}}
-                <div class="relative mb-24 z-10">
-                    <div class="bg-primary text-white p-5 rounded-xl shadow-lg w-80 text-center border-b-4 border-black/20 transition-all hover:-translate-y-1">
-                        <h3 class="text-[10px] font-black uppercase tracking-[0.3em] mb-1 opacity-70">Pemimpin Redaksi</h3>
-                        <p class="text-2xl font-black">Siti Aminah, M.I.Kom</p>
-                    </div>
-                    {{-- Horizontal T-Bar --}}
-                    <div class="absolute left-1/2 -bottom-12 w-[85vw] md:w-[750px] h-0.5 bg-red-400 -translate-x-1/2 hidden md:block"></div>
-                </div>
-
-                {{-- Level 3: Departments --}}
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-8 w-full relative z-10">
-                    {{-- Redaksi --}}
-                    <div class="relative">
-                        <div class="absolute top-0 left-1/2 w-0.5 h-12 bg-red-400 -translate-x-1/2 -mt-12 hidden md:block"></div>
-                        <div class="bg-white border-b-4 border-red-600 p-6 rounded-xl shadow-lg text-center border border-gray-100 transition-all hover:shadow-xl hover:-translate-y-1">
-                            <h3 class="text-[10px] font-black text-gray-400 uppercase tracking-[0.2em] mb-4">Redaksi</h3>
-                            <div class="space-y-4">
-                                <div class="bg-gray-50 p-2 rounded">
-                                    <p class="text-[9px] text-gray-400 font-black uppercase tracking-widest">HK & POL</p>
-                                    <p class="font-black text-gray-800">Andi Saputra</p>
-                                </div>
-                                <div class="bg-gray-50 p-2 rounded">
-                                    <p class="text-[9px] text-gray-400 font-black uppercase tracking-widest">EKONOMI</p>
-                                    <p class="font-black text-gray-800">Rina Kartika</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    {{-- Infrastruktur --}}
-                    <div class="relative">
-                        <div class="absolute top-0 left-1/2 w-0.5 h-12 bg-red-400 -translate-x-1/2 -mt-12 hidden md:block"></div>
-                        <div class="bg-white border-b-4 border-red-600 p-6 rounded-xl shadow-lg text-center border border-gray-100 transition-all hover:shadow-xl hover:-translate-y-1">
-                            <h3 class="text-[10px] font-black text-gray-400 uppercase tracking-[0.2em] mb-4">Infrastruktur</h3>
-                            <div class="space-y-4">
-                                <div class="bg-gray-50 p-2 rounded">
-                                    <p class="text-[9px] text-gray-400 font-black uppercase tracking-widest">WEB DEV</p>
-                                    <p class="font-black text-gray-800">Agus Setiawan</p>
-                                </div>
-                                <div class="bg-gray-50 p-2 rounded">
-                                    <p class="text-[9px] text-gray-400 font-black uppercase tracking-widest">DATABASE</p>
-                                    <p class="font-black text-gray-800">Indra Kesuma</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    {{-- Media Kreatif --}}
-                    <div class="relative">
-                        <div class="absolute top-0 left-1/2 w-0.5 h-12 bg-red-400 -translate-x-1/2 -mt-12 hidden md:block"></div>
-                        <div class="bg-white border-b-4 border-red-600 p-6 rounded-xl shadow-lg text-center border border-gray-100 transition-all hover:shadow-xl hover:-translate-y-1">
-                            <h3 class="text-[10px] font-black text-gray-400 uppercase tracking-[0.2em] mb-4">Media Kreatif</h3>
-                            <div class="space-y-4">
-                                <div class="bg-gray-50 p-2 rounded">
-                                    <p class="text-[9px] text-gray-400 font-black uppercase tracking-widest">DESIGN</p>
-                                    <p class="font-black text-gray-800">Eko Prasetyo</p>
-                                </div>
-                                <div class="bg-gray-50 p-2 rounded">
-                                    <p class="text-[9px] text-gray-400 font-black uppercase tracking-widest">SOSMED</p>
-                                    <p class="font-black text-gray-800">Diana Putri</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                {{-- Reporter Lapangan --}}
-                <div class="mt-20 w-full relative z-10">
-                    <div class="flex flex-col items-center mb-8">
-                        <div class="w-0.5 h-12 bg-gray-200 hidden md:block"></div>
-                        <div class="bg-gray-900 text-white text-[10px] font-black px-8 py-2 rounded-full uppercase tracking-[0.4em] shadow-xl">
-                            Reporter Lapangan
-                        </div>
-                    </div>
-                    <div class="grid grid-cols-2 lg:grid-cols-4 gap-6">
-                        @foreach(['Fajar Ramadhan', 'Gita Permata', 'Hadi Wijaya', 'Salsabila Putri'] as $name)
-                        <div class="bg-white p-4 rounded-xl border border-gray-100 text-center shadow-sm transition-all hover:shadow-md hover:border-red-200 group">
-                            <p class="text-xs font-black text-gray-600 group-hover:text-primary uppercase tracking-tighter">{{ $name }}</p>
-                            <p class="text-[8px] font-bold text-gray-300 uppercase tracking-widest mt-1">Koresponden</p>
-                        </div>
-                        @endforeach
-                    </div>
-                </div>
+            <div class="bg-gray-50 border border-gray-100 rounded-2xl p-6">
+                <p class="text-gray-700 leading-relaxed text-base font-medium italic">
+                    "{{ $aboutVisi }}"
+                </p>
             </div>
         </section>
+        @endif
 
+        {{-- ── MISI ── --}}
+        @php
+            $aboutMisi = $settings['about_misi'] ?? null;
+            $misiLines = $aboutMisi ? array_filter(array_map('trim', explode("\n", $aboutMisi))) : [];
+        @endphp
+        @if(count($misiLines) > 0)
         <section>
-            <h2 class="text-2xl font-black text-gray-800 uppercase tracking-tight mb-4 border-l-4 border-red-600 pl-4">
-                Fokus Kami
+            <h2 class="text-2xl font-black text-gray-800 uppercase tracking-tight mb-4 border-l-4 border-primary pl-4">
+                Misi
             </h2>
-            <p>
-                Selain berita lalu lintas, kami secara mendalam meliput sektor pendidikan (Dikbud), pariwisata, hukum & politik, serta literasi digital. Kami percaya bahwa informasi yang komprehensif adalah kunci kemajuan suatu daerah.
-            </p>
+            <div class="space-y-3">
+                @foreach($misiLines as $i => $misi)
+                <div class="flex items-start gap-4 p-4 bg-white border border-gray-100 rounded-xl shadow-sm hover:shadow-md hover:border-primary/20 transition-all group">
+                    <span class="shrink-0 w-8 h-8 rounded-full bg-primary text-white text-[11px] font-black flex items-center justify-center shadow-sm shadow-primary/30 group-hover:scale-105 transition-transform">
+                        {{ $i + 1 }}
+                    </span>
+                    <p class="text-gray-700 leading-relaxed text-sm font-medium pt-1">{{ $misi }}</p>
+                </div>
+                @endforeach
+            </div>
         </section>
+        @endif
 
-        <div class="mt-16 p-8 bg-gray-900 text-white rounded-2xl flex flex-col md:flex-row items-center gap-8 shadow-2xl">
-            <div class="flex-1 text-center md:text-left">
-                <h2 class="text-2xl font-black mb-2 uppercase tracking-tight">Hubungi Redaksi</h2>
-                <p class="text-gray-400 text-sm">Punya informasi penting atau ingin berkolaborasi?</p>
+        {{-- ── KONTAK ── --}}
+        @php
+            $aboutAlamat   = $settings['about_alamat']   ?? null;
+            $aboutWhatsapp = $settings['about_whatsapp'] ?? null;
+            $aboutEmail    = $settings['about_email']    ?? null;
+            $hasContact    = $aboutAlamat || $aboutWhatsapp || $aboutEmail;
+        @endphp
+        @if($hasContact)
+        <section>
+            <h2 class="text-2xl font-black text-gray-800 uppercase tracking-tight mb-6 border-l-4 border-primary pl-4">
+                Kontak
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+
+                {{-- Alamat --}}
+                @if($aboutAlamat)
+                <div class="bg-white rounded-2xl p-6 border border-gray-100 shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all group">
+                    <div class="w-10 h-10 bg-blue-50 rounded-xl flex items-center justify-center mb-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#3b82f6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+                            <circle cx="12" cy="10" r="3"/>
+                        </svg>
+                    </div>
+                    <p class="text-[9px] font-black text-gray-400 uppercase tracking-[0.2em] mb-2">Alamat</p>
+                    <p class="text-gray-800 font-bold text-sm leading-relaxed">{{ $aboutAlamat }}</p>
+                </div>
+                @endif
+
+                {{-- WhatsApp --}}
+                @if($aboutWhatsapp)
+                <div class="bg-white rounded-2xl p-6 border border-gray-100 shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all group">
+                    <div class="w-10 h-10 bg-green-50 rounded-xl flex items-center justify-center mb-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2.18L6.52 2a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 9a16 16 0 0 0 6 6l.86-.87a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 21.46 16l-.54.92z"/>
+                        </svg>
+                    </div>
+                    <p class="text-[9px] font-black text-gray-400 uppercase tracking-[0.2em] mb-2">WhatsApp</p>
+                    <a href="https://wa.me/{{ preg_replace('/[^0-9]/', '', $aboutWhatsapp) }}"
+                       target="_blank"
+                       class="text-gray-800 font-bold text-sm hover:text-green-600 transition-colors">
+                        {{ $aboutWhatsapp }}
+                    </a>
+                </div>
+                @endif
+
+                {{-- Email --}}
+                @if($aboutEmail)
+                <div class="bg-white rounded-2xl p-6 border border-gray-100 shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all group">
+                    <div class="w-10 h-10 bg-red-50 rounded-xl flex items-center justify-center mb-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                            <polyline points="22,6 12,13 2,6"/>
+                        </svg>
+                    </div>
+                    <p class="text-[9px] font-black text-gray-400 uppercase tracking-[0.2em] mb-2">Email</p>
+                    <a href="mailto:{{ $aboutEmail }}"
+                       class="text-gray-800 font-bold text-sm hover:text-primary transition-colors break-all">
+                        {{ $aboutEmail }}
+                    </a>
+                </div>
+                @endif
+
             </div>
-            <div class="flex flex-col gap-2">
-                <a href="mailto:{{ config('news_portal.site.contact_email', 'redaksi@infolantasmojokerto.com') }}" class="px-6 py-3 bg-primary hover:opacity-90 text-white font-bold rounded-full transition-all text-center">
-                    Email Redaksi
-                </a>
-                <span class="text-xs text-gray-500 text-center">Jl. Raya Mojokerto No. 123, Jawa Timur</span>
-            </div>
-        </div>
-    </div>
+        </section>
+        @endif
+
+
+    </div>{{-- /space-y-12 --}}
 </div>
 @endsection
