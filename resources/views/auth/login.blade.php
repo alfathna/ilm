@@ -211,14 +211,14 @@
                     </div>
 
                     <div>
-                        <div class="flex items-center justify-between mb-2">
+                        <!-- <div class="flex items-center justify-between mb-2">
                             <label for="password" class="input-label !mb-0">Kata Sandi</label>
                             @if (Route::has('password.request'))
                                 <a href="{{ route('password.request') }}" class="text-sm font-semibold hover:underline" style="color: var(--color-primary)">
                                     Lupa Sandi?
                                 </a>
                             @endif
-                        </div>
+                        </div> -->
                         <div class="password-wrapper">
                             <input id="password" type="password" name="password" required autocomplete="current-password"
                                 class="input-field @error('password') !border-red-500 @enderror"
@@ -245,7 +245,7 @@
                         @enderror
                     </div>
 
-                    <div class="flex items-center">
+                    <!-- <div class="flex items-center">
                         <label class="flex items-center gap-3 cursor-pointer group">
                             <div class="relative flex items-center justify-center">
                                 <input id="remember_me" type="checkbox" name="remember"
@@ -258,7 +258,7 @@
                             </div>
                             <span class="text-sm font-medium text-gray-700 group-hover:text-gray-900 transition-colors">Ingat saya di perangkat ini</span>
                         </label>
-                    </div>
+                    </div> -->
 
                     <button type="submit" class="btn-primary mt-2">
                         Masuk Sekarang
