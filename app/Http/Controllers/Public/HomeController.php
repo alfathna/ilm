@@ -49,11 +49,11 @@ class HomeController extends Controller
         }
 
         $seo = [
-            'title' => config('news_portal.site.name', 'Info Lantas Mojokerto'),
-            'description' => config('news_portal.site.description', ''),
-            'keywords' => config('news_portal.seo.default_keywords', ''),
-            'og_type' => 'website',
-            'canonical' => route('home'),
+            'title'       => \App\Models\WebSetting::get('site_name', config('news_portal.site.name', 'Info Lantas Mojokerto')),
+            'description' => \App\Models\WebSetting::get('site_description', config('news_portal.site.description', '')),
+            'keywords'    => config('news_portal.seo.default_keywords', ''),
+            'og_type'     => 'website',
+            'canonical'   => route('home'),
         ];
 
         return view('public.home', compact(

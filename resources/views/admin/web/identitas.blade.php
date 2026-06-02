@@ -37,15 +37,6 @@
                     <textarea name="site_description" class="w-full px-4 py-3 bg-gray-50 border border-gray-100 rounded-xl text-sm font-bold text-gray-700 h-24 focus:outline-none focus:ring-2 focus:ring-red-100 transition-all resize-none">{{ old('site_description', $settings['site_description'] ?? '') }}</textarea>
                 </div>
 
-                <div class="space-y-4">
-                    <label class="text-[10px] font-black text-gray-400 uppercase tracking-widest">Email Redaksi</label>
-                    <input type="email" name="contact_email" value="{{ old('contact_email', $settings['contact_email'] ?? '') }}" class="w-full px-4 py-3 bg-gray-50 border border-gray-100 rounded-xl text-sm font-bold text-gray-700 focus:outline-none focus:ring-2 focus:ring-red-100 transition-all">
-                </div>
-
-                <div class="space-y-4">
-                    <label class="text-[10px] font-black text-gray-400 uppercase tracking-widest">Telepon</label>
-                    <input type="text" name="contact_phone" value="{{ old('contact_phone', $settings['contact_phone'] ?? '') }}" class="w-full px-4 py-3 bg-gray-50 border border-gray-100 rounded-xl text-sm font-bold text-gray-700 focus:outline-none focus:ring-2 focus:ring-red-100 transition-all">
-                </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div class="space-y-4">

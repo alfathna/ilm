@@ -132,8 +132,6 @@ class WebSettingController extends Controller
         $request->validate([
             'site_name'        => 'required|string|max:100',
             'site_description' => 'nullable|string|max:255',
-            'contact_email'    => 'nullable|email|max:100',
-            'contact_phone'    => 'nullable|string|max:30',
             'social_facebook'  => 'nullable|url|max:255',
             'social_instagram' => 'nullable|url|max:255',
             'social_youtube'   => 'nullable|url|max:255',
@@ -141,7 +139,7 @@ class WebSettingController extends Controller
         ]);
 
         $fields = [
-            'site_name', 'site_description', 'contact_email', 'contact_phone',
+            'site_name', 'site_description',
             'social_facebook', 'social_instagram', 'social_youtube', 'social_tiktok',
         ];
 

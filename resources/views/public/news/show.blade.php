@@ -153,9 +153,10 @@
                         <p class="text-sm font-medium">Belum ada komentar. Jadilah yang pertama!</p>
                     </div>
                 @else
-                    <div class="space-y-5">
-                        @foreach($article->comments as $comment)
-                            <div class="flex gap-3">
+                    @php $totalComments = $article->comments->count(); @endphp
+                    <div class="space-y-5" id="comment-list">
+                        @foreach($article->comments as $i => $comment)
+                            <div class="flex gap-3 comment-item {{ $i >= 10 ? 'hidden' : '' }}" data-index="{{ $i }}">
                                 <div class="w-9 h-9 rounded-full bg-gray-200 flex items-center justify-center text-gray-600 text-sm font-black shrink-0">
                                     {{ mb_strtoupper(mb_substr($comment->user->name, 0, 1)) }}
                                 </div>
@@ -171,7 +172,25 @@
                             </div>
                         @endforeach
                     </div>
+
+                    {{-- Load More Button --}}
+                    @if($totalComments > 10)
+                    <div class="mt-6 text-center" id="load-more-wrapper">
+                        <p class="text-[11px] text-gray-400 font-medium mb-3" id="comment-counter">
+                            Menampilkan <span id="shown-count">10</span> dari {{ $totalComments }} komentar
+                        </p>
+                        <button
+                            id="load-more-btn"
+                            onclick="loadMoreComments()"
+                            class="inline-flex items-center gap-2 px-6 py-2.5 border-2 border-primary text-primary text-xs font-black uppercase tracking-widest rounded-xl hover:bg-primary hover:text-white transition-all duration-200 active:scale-95"
+                        >
+                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+                            Muat Lebih Banyak
+                        </button>
+                    </div>
+                    @endif
                 @endif
+
             </section>
 
             {{-- Related News --}}
@@ -213,3 +232,49 @@
     </div>
 </div>
 @endsection
+
+@push('scripts')
+<script>
+    var shownCount = 10;
+    var perPage    = 10;
+
+    function loadMoreComments() {
+        var items = document.querySelectorAll('.comment-item');
+        var total = items.length;
+        var nextBatch = shownCount + perPage;
+
+        // Tampilkan komentar berikutnya dengan animasi fade-in
+        for (var i = shownCount; i < Math.min(nextBatch, total); i++) {
+            var el = items[i];
+            el.classList.remove('hidden');
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(8px)';
+            el.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+            (function(elem) {
+                requestAnimationFrame(function() {
+                    requestAnimationFrame(function() {
+                        elem.style.opacity = '1';
+                        elem.style.transform = 'translateY(0)';
+                    });
+                });
+            })(el);
+        }
+
+        shownCount = Math.min(nextBatch, total);
+
+        // Update counter
+        var counter = document.getElementById('shown-count');
+        if (counter) counter.textContent = shownCount;
+
+        // Sembunyikan tombol jika semua komentar sudah tampil
+        if (shownCount >= total) {
+            var wrapper = document.getElementById('load-more-wrapper');
+            if (wrapper) {
+                wrapper.style.transition = 'opacity 0.3s';
+                wrapper.style.opacity = '0';
+                setTimeout(function() { wrapper.style.display = 'none'; }, 300);
+            }
+        }
+    }
+</script>
+@endpush

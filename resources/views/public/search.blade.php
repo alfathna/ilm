@@ -51,9 +51,9 @@
             </form>
 
             @if(request('q'))
-            <p class="text-sm text-gray-500 mb-8">Hasil pencarian untuk: <strong class="text-gray-900">"{{ request('q') }}"</strong> ({{ $articles->total() }} hasil)</p>
+            <p class="text-sm text-gray-500 mb-8">Hasil pencarian untuk: <strong class="text-gray-900">"{{ request('q') }}"</strong> ({{ $articles->total() + ($featuredNews ? 1 : 0) }} hasil)</p>
             @elseif(request('day') || request('month') || request('year'))
-            <p class="text-sm text-gray-500 mb-8">Berita tanggal: <strong class="text-gray-900">{{ request('day', '--') }}/{{ request('month', '--') }}/{{ request('year', '--') }}</strong> ({{ $articles->total() }} hasil)</p>
+            <p class="text-sm text-gray-500 mb-8">Berita tanggal: <strong class="text-gray-900">{{ request('day', '--') }}/{{ request('month', '--') }}/{{ request('year', '--') }}</strong> ({{ $articles->total() + ($featuredNews ? 1 : 0) }} hasil)</p>
             @endif
 
             {{-- Featured News --}}
