@@ -120,8 +120,8 @@
     <div class="bg-white rounded-2xl border border-gray-100 shadow-sm p-6">
         <div class="flex items-center justify-between mb-6">
             <div>
-                <h3 class="text-sm font-black text-gray-900 uppercase tracking-tight">Grafik Views Berita</h3>
-                <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest mt-1">Total Views Berdasarkan Tanggal Publish (15 Hari Terakhir)</p>
+                <h3 class="text-sm font-black text-gray-900 uppercase tracking-tight">Grafik Pengunjung Web</h3>
+                <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest mt-1">Kunjungan Harian (30 Hari Terakhir)</p>
             </div>
             <div class="w-10 h-10 bg-red-50 rounded-full flex items-center justify-center text-red-600">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>

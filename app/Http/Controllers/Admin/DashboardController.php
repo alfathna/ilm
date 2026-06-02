@@ -8,6 +8,7 @@ use App\Models\Category;
 use App\Models\Comment;
 use App\Models\Gallery;
 use App\Models\News;
+use App\Models\NewsViewLog;
 use App\Models\User;
 use App\Models\Video;
 use Illuminate\Support\Carbon;
@@ -45,16 +46,14 @@ class DashboardController extends Controller
             ->take(10)
             ->get();
 
-        // Daily view stats for last 30 days (for Chart.js)
-        $dailyStats = News::published()
-            ->where('published_at', '>=', Carbon::now()->subDays(30))
-            ->select(
-                DB::raw('DATE(published_at) as date'),
-                DB::raw('SUM(views) as total_views'),
-                DB::raw('COUNT(*) as total_articles')
+        // Daily view stats for last 30 days from news_view_logs (accurate per-day data)
+        $dailyStats = NewsViewLog::select(
+                DB::raw('viewed_date as date'),
+                DB::raw('COUNT(*) as total_views')
             )
-            ->groupBy(DB::raw('DATE(published_at)'))
-            ->orderBy('date')
+            ->where('viewed_date', '>=', Carbon::now()->subDays(29)->toDateString())
+            ->groupBy('viewed_date')
+            ->orderBy('viewed_date')
             ->get();
 
         // Fill in missing dates with zero values
@@ -67,7 +66,7 @@ class DashboardController extends Controller
             $date = Carbon::now()->subDays($i)->format('Y-m-d');
             $chartLabels[] = Carbon::parse($date)->format('d M');
             $chartViews[] = isset($statsMap[$date]) ? (int) $statsMap[$date]->total_views : 0;
-            $chartArticles[] = isset($statsMap[$date]) ? (int) $statsMap[$date]->total_articles : 0;
+            $chartArticles[] = 0; // not used, kept for compatibility
         }
 
         // Category stats for bar chart - total views per category
