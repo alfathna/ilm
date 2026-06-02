@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Public;
 
 use App\Http\Controllers\Controller;
 use App\Models\Video;
+use App\Models\ViewLog;
 use App\Services\SeoService;
+use Illuminate\Support\Carbon;
 use Illuminate\View\View;
 
 class VideoController extends Controller
@@ -42,6 +44,13 @@ class VideoController extends Controller
         $sessionKey = "viewed_video_{$video->id}";
         if (!session()->has($sessionKey)) {
             $video->increment('views');
+            
+            ViewLog::create([
+                'viewable_type' => Video::class,
+                'viewable_id'   => $video->id,
+                'viewed_date'   => Carbon::today()->toDateString(),
+            ]);
+
             session()->put($sessionKey, true);
         }
 

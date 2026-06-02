@@ -27,6 +27,11 @@
                 </span>
                 <span class="w-1 h-1 bg-gray-300 rounded-full"></span>
                 <span class="font-medium">{{ $gallery->images->count() }} foto</span>
+                <span class="w-1 h-1 bg-gray-300 rounded-full"></span>
+                <span class="flex items-center gap-1 font-medium" title="Jumlah Dilihat">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                    {{ number_format($gallery->views) }}
+                </span>
             </div>
 
             {{-- Main Image Slider --}}

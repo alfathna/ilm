@@ -17,7 +17,7 @@ class UserController extends Controller
      */
     public function index(Request $request): View
     {
-        $query = User::query()->where('role', 'redaktur')->withCount('news');
+        $query = User::query()->where('role', 'redaktur')->withCount(['news', 'videos', 'galleries']);
 
         if ($request->filled('status')) {
             $status = $request->status === 'aktif' ? 1 : 0;
@@ -153,6 +153,12 @@ class UserController extends Controller
         if ($user->id === auth()->id()) {
             return redirect()->route('admin.users.index')
                 ->with('error', 'Anda tidak dapat menghapus akun sendiri.');
+        }
+
+        // Prevent deleting if the user has posted news, videos, or galleries
+        if ($user->news()->count() > 0 || $user->videos()->count() > 0 || $user->galleries()->count() > 0) {
+            return redirect()->route('admin.users.index')
+                ->with('error', 'Tidak dapat menghapus redaktur karena sudah pernah memposting berita, video, atau potret kelana kota.');
         }
 
         $user->delete();

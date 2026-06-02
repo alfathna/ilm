@@ -35,7 +35,7 @@
                         </h3>
                         <div class="flex items-center gap-4 text-[11px] text-gray-400 mb-4 font-bold tracking-wider">
                             <span class="flex items-center gap-1.5 uppercase bg-gray-50 px-2 py-0.5 rounded italic">🕒 {{ $article->published_at?->translatedFormat('d M Y (H:i)') }}</span>
-                            <span class="flex items-center gap-1.5 uppercase bg-gray-50 px-2 py-0.5 rounded italic">💬 {{ $article->views }}</span>
+                            <span class="flex items-center gap-1.5 uppercase bg-gray-50 px-2 py-0.5 rounded italic"><svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg> {{ $article->views }}</span>
                             <span class="text-primary font-black hover:opacity-80 transition-opacity uppercase border-b-2 border-primary/20 hover:border-primary">Selengkapnya</span>
                         </div>
                         <p class="text-[14px] text-gray-500 line-clamp-3 leading-relaxed font-medium">

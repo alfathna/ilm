@@ -17,13 +17,6 @@
         <p class="mt-4 text-[10px] font-bold text-gray-400 uppercase tracking-widest ml-16">Pilih warna dasar yang akan diterapkan langsung di halaman utama web</p>
     </div>
 
-    {{-- Flash Message --}}
-    @if(session('success'))
-    <div id="flash-msg" class="mb-6 flex items-center gap-3 bg-green-50 border border-green-200 text-green-700 px-5 py-4 rounded-xl text-sm font-bold">
-        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-        {{ session('success') }}
-    </div>
-    @endif
 
     @if($errors->any())
     <div class="mb-6 bg-red-50 border border-red-200 text-red-700 px-5 py-4 rounded-xl text-sm font-bold">

@@ -21,12 +21,6 @@
     </a>
 </div>
 
-@if(session('success'))
-<div class="mb-6 bg-green-50 border border-green-200 text-green-700 px-5 py-4 rounded-xl text-xs font-bold flex items-center gap-3 shadow-sm">
-    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-    {{ session('success') }}
-</div>
-@endif
 
 <div class="bg-white border border-gray-100 rounded-2xl overflow-hidden shadow-sm">
     <div class="overflow-x-auto">
@@ -63,7 +57,7 @@
                             <a href="{{ route('admin.editorial-teams.edit', $team->id) }}" class="p-2 text-gray-400 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-all" title="Edit">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
                             </a>
-                            <form action="{{ route('admin.editorial-teams.destroy', $team->id) }}" method="POST" class="inline-block" onsubmit="return confirm('Yakin ingin menghapus anggota redaksi ini?')">
+                            <form action="{{ route('admin.editorial-teams.destroy', $team->id) }}" method="POST" class="inline-block delete-form" data-confirm="Yakin ingin menghapus anggota redaksi ini?">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="p-2 text-gray-400 hover:text-red-600 hover:bg-red-50 rounded-lg transition-all" title="Hapus">

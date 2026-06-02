@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Public;
 
 use App\Http\Controllers\Controller;
 use App\Models\Gallery;
+use App\Models\ViewLog;
 use App\Services\SeoService;
+use Illuminate\Support\Carbon;
 use Illuminate\View\View;
 
 class GalleryController extends Controller
@@ -45,6 +47,13 @@ class GalleryController extends Controller
         $sessionKey = "viewed_gallery_{$gallery->id}";
         if (!session()->has($sessionKey)) {
             $gallery->increment('views');
+            
+            ViewLog::create([
+                'viewable_type' => Gallery::class,
+                'viewable_id'   => $gallery->id,
+                'viewed_date'   => Carbon::today()->toDateString(),
+            ]);
+
             session()->put($sessionKey, true);
         }
 

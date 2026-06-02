@@ -69,7 +69,6 @@
                     <th class="px-6 py-4 text-[10px] font-black text-gray-400 uppercase tracking-widest text-center">KECAMATAN</th>
                     <th class="px-6 py-4 text-[10px] font-black text-gray-400 uppercase tracking-widest text-center">STATUS</th>
                     <th class="px-6 py-4 text-[10px] font-black text-gray-400 uppercase tracking-widest text-center">TOTAL POST</th>
-                    <th class="px-6 py-4 text-[10px] font-black text-gray-400 uppercase tracking-widest text-center">TOTAL PENYIMAK</th>
                     @if(auth()->user()->isAdmin())
                     <th class="px-6 py-4 text-[10px] font-black text-gray-400 uppercase tracking-widest text-right">AKSI</th>
                     @endif
@@ -101,10 +100,9 @@
                         @endif
                     </td>
                     <td class="px-6 py-4 text-xs font-bold text-gray-700 text-center">
-                        {{ $user->news_count ?? 0 }}
-                    </td>
-                    <td class="px-6 py-4 text-xs font-bold text-gray-700 text-center">
-                        0
+                        <div>{{ $user->news_count ?? 0 }} Berita</div>
+                        <div class="text-[10px] text-gray-400 mt-0.5">{{ $user->videos_count ?? 0 }} Video</div>
+                        <div class="text-[10px] text-gray-400 mt-0.5">{{ $user->galleries_count ?? 0 }} Potret</div>
                     </td>
                     @if(auth()->user()->isAdmin())
                     <td class="px-6 py-4 text-right">
@@ -113,7 +111,7 @@
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
                             </a>
                             @if($user->id !== auth()->id())
-                            <form method="POST" action="{{ route('admin.users.destroy', $user) }}" class="inline" onsubmit="return confirm('Yakin ingin menghapus pengguna ini?')">
+                            <form method="POST" action="{{ route('admin.users.destroy', $user) }}" class="inline delete-form" data-confirm="Yakin ingin menghapus pengguna ini?">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="text-red-500 hover:text-red-700" title="Hapus">
@@ -127,7 +125,7 @@
                 </tr>
                 @empty
                 <tr>
-                    <td colspan="{{ auth()->user()->isAdmin() ? '8' : '7' }}" class="px-6 py-12 text-center text-xs font-bold text-gray-400">
+                    <td colspan="{{ auth()->user()->isAdmin() ? '7' : '6' }}" class="px-6 py-12 text-center text-xs font-bold text-gray-400">
                         Tidak ada data redaktur ditemukan.
                     </td>
                 </tr>
