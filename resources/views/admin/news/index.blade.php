@@ -23,12 +23,6 @@
     </a>
 </div>
 
-@if(session('error'))
-    <div class="mb-6 bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded relative" role="alert">
-        <strong class="font-bold">Oops!</strong>
-        <span class="block sm:inline">{{ session('error') }}</span>
-    </div>
-@endif
 
 @if(request('breaking'))
     @php $breakingCount = \App\Models\News::where('is_breaking_news', true)->count(); @endphp
@@ -203,7 +197,7 @@
                                 @endcan
     
                                 @can('delete', $article)
-                                <form method="POST" action="{{ route('admin.news.destroy', $article) }}" class="inline" onsubmit="return confirm('Yakin ingin menghapus berita ini?')">
+                                <form method="POST" action="{{ route('admin.news.destroy', $article) }}" class="inline delete-form" data-confirm="Yakin ingin menghapus berita ini?">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="text-red-600 hover:text-red-800" title="Hapus">

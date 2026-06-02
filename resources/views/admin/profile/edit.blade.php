@@ -14,11 +14,7 @@
         </div>
     </div>
 
-    @if(session('success'))
-        <div class="mb-6 bg-green-50 text-green-700 p-4 rounded-lg text-sm font-bold border border-green-200">
-            {{ session('success') }}
-        </div>
-    @endif
+
 
     <form method="POST" action="{{ route('admin.profile.update') }}">
         @csrf

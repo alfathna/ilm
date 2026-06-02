@@ -21,13 +21,6 @@
         </p>
     </div>
 
-    {{-- Alerts --}}
-    @if(session('success'))
-        <div class="mb-6 bg-green-50 border border-green-200 text-green-700 px-5 py-4 rounded-xl text-xs font-bold flex items-center gap-3 shadow-sm">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-            {{ session('success') }}
-        </div>
-    @endif
 
     <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
         {{-- Add Word Form --}}
@@ -84,8 +77,7 @@
                             @foreach($badWords as $badWord)
                                 <div class="flex items-center gap-1.5 bg-red-50 border border-red-100 rounded-lg px-3 py-1.5 group">
                                     <span class="text-sm font-mono font-bold text-red-800">{{ $badWord->word }}</span>
-                                    <form action="{{ route('admin.kata-jorok.destroy', $badWord->id) }}" method="POST" class="inline"
-                                        onsubmit="return confirm('Hapus kata \'{{ $badWord->word }}\' dari daftar?')">
+                                    <form action="{{ route('admin.kata-jorok.destroy', $badWord->id) }}" method="POST" class="inline delete-form" data-confirm="Hapus kata '{{ $badWord->word }}' dari daftar?">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" class="text-red-300 hover:text-red-600 transition-colors ml-1" title="Hapus">
