@@ -54,6 +54,7 @@
                     </div>
                 </div>
 
+                {{--
                 <!-- SEO Block -->
                 <div class="bg-white rounded-lg shadow-sm p-6">
                     <h2 class="text-lg font-semibold text-gray-800 mb-4 border-b pb-2">Pengaturan SEO</h2>
@@ -79,6 +80,7 @@
                         <p class="mt-1 text-xs text-gray-500">Pisahkan dengan koma.</p>
                     </div>
                 </div>
+                --}}
             </div>
 
             <!-- Sidebar Column -->
