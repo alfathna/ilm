@@ -3,7 +3,7 @@
 namespace App\Http\Middleware;
 
 use App\Models\News;
-use App\Models\NewsViewLog;
+use App\Models\ViewLog;
 use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
@@ -32,9 +32,10 @@ class IncrementViewCount
                     $news->increment('views');
 
                     // Log the daily view (one entry per unique session per article per day)
-                    NewsViewLog::create([
-                        'news_id'     => $news->id,
-                        'viewed_date' => Carbon::today()->toDateString(),
+                    ViewLog::create([
+                        'viewable_type' => News::class,
+                        'viewable_id'   => $news->id,
+                        'viewed_date'   => Carbon::today()->toDateString(),
                     ]);
 
                     $request->session()->put($sessionKey, true);

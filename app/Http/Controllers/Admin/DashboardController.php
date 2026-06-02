@@ -8,9 +8,9 @@ use App\Models\Category;
 use App\Models\Comment;
 use App\Models\Gallery;
 use App\Models\News;
-use App\Models\NewsViewLog;
 use App\Models\User;
 use App\Models\Video;
+use App\Models\ViewLog;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
 use Illuminate\View\View;
@@ -46,8 +46,8 @@ class DashboardController extends Controller
             ->take(10)
             ->get();
 
-        // Daily view stats for last 30 days from news_view_logs (accurate per-day data)
-        $dailyStats = NewsViewLog::select(
+        // Daily view stats for last 30 days from view_logs (accurate per-day data for all types)
+        $dailyStats = ViewLog::select(
                 DB::raw('viewed_date as date'),
                 DB::raw('COUNT(*) as total_views')
             )

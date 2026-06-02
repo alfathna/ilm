@@ -11,9 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('news_view_logs', function (Blueprint $table) {
+        Schema::create('view_logs', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('news_id')->constrained('news')->onDelete('cascade');
+            $table->morphs('viewable'); // creates viewable_id and viewable_type
             $table->date('viewed_date'); // tanggal kunjungan
             $table->timestamps();
 
@@ -27,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('news_view_logs');
+        Schema::dropIfExists('view_logs');
     }
 };

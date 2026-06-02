@@ -3,12 +3,13 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\MorphTo;
 
-class NewsViewLog extends Model
+class ViewLog extends Model
 {
     protected $fillable = [
-        'news_id',
+        'viewable_type',
+        'viewable_id',
         'viewed_date',
     ];
 
@@ -20,10 +21,10 @@ class NewsViewLog extends Model
     }
 
     /**
-     * Get the news article this log belongs to.
+     * Get the parent viewable model (News, Video, or Gallery).
      */
-    public function news(): BelongsTo
+    public function viewable(): MorphTo
     {
-        return $this->belongsTo(News::class);
+        return $this->morphTo();
     }
 }
