@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Daftar – {{ config('news_portal.site.name', 'Info Lantas Mojokerto') }}</title>
+    <title>Daftar – {{ \App\Models\WebSetting::get('site_name', config('news_portal.site.name', 'Info Lantas Mojokerto')) }}</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     @php $themeColor = \App\Models\WebSetting::get('theme_color', '#dc2626'); @endphp
     <style>

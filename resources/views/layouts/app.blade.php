@@ -6,19 +6,23 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     {{-- Dynamic SEO Meta Tags --}}
-    <title>{{ $seo['title'] ?? config('news_portal.site.name', 'Info Lantas Mojokerto') }}</title>
-    <meta name="description" content="{{ $seo['description'] ?? config('news_portal.site.description', '') }}">
+    @php
+        $siteName = \App\Models\WebSetting::get('site_name', config('news_portal.site.name', 'Info Lantas Mojokerto'));
+        $siteDesc = \App\Models\WebSetting::get('site_description', config('news_portal.site.description', ''));
+    @endphp
+    <title>{{ $seo['title'] ?? $siteName }}</title>
+    <meta name="description" content="{{ $seo['description'] ?? $siteDesc }}">
     <meta name="keywords" content="{{ $seo['keywords'] ?? config('news_portal.seo.default_keywords', '') }}">
 
     {{-- Open Graph --}}
-    <meta property="og:title" content="{{ $seo['title'] ?? config('news_portal.site.name') }}">
-    <meta property="og:description" content="{{ $seo['description'] ?? config('news_portal.site.description', '') }}">
+    <meta property="og:title" content="{{ $seo['title'] ?? $siteName }}">
+    <meta property="og:description" content="{{ $seo['description'] ?? $siteDesc }}">
     @if(!empty($seo['og_image']))
     <meta property="og:image" content="{{ $seo['og_image'] }}">
     @endif
     <meta property="og:type" content="{{ $seo['og_type'] ?? 'website' }}">
     <meta property="og:url" content="{{ url()->current() }}">
-    <meta property="og:site_name" content="{{ config('news_portal.site.name') }}">
+    <meta property="og:site_name" content="{{ $siteName }}">
 
     {{-- Canonical --}}
     <link rel="canonical" href="{{ $seo['canonical'] ?? url()->current() }}">

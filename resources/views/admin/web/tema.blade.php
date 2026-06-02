@@ -41,8 +41,8 @@
                 <div class="flex items-center gap-6">
                     {{-- Color Swatch --}}
                     <div
-                        class="theme-swatch w-14 h-14 rounded-2xl shadow-inner flex items-center justify-center transition-transform duration-200 {{ $theme['class'] }}"
-                        style="{{ $activeColor === $theme['color'] ? 'transform: scale(1.1)' : '' }}"
+                        class="theme-swatch w-14 h-14 rounded-2xl shadow-inner flex items-center justify-center transition-transform duration-200"
+                        style="background-color: {{ $theme['color'] }}; {{ $activeColor === $theme['color'] ? 'transform: scale(1.1)' : '' }}"
                     >
                         {{-- Checkmark icon, shown when active --}}
                         <svg

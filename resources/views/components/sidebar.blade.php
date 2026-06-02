@@ -16,7 +16,7 @@
         <div class="space-y-5">
             @foreach($popularAll->take(5) as $index => $item)
             <a href="{{ $item->url }}" class="group cursor-pointer flex gap-4">
-                <span class="text-lg font-black text-gray-100 group-hover:text-primary transition-colors min-w-[24px] text-center leading-none">
+                <span class="text-lg font-black text-gray-400 group-hover:text-primary transition-colors min-w-[24px] text-center leading-none">
                     {{ $index + 1 }}
                 </span>
                 <div class="flex flex-col gap-1">
@@ -84,7 +84,7 @@
         <div class="space-y-5">
             @foreach($recentNews->take(5) as $index => $news)
             <a href="{{ route('news.show', $news->slug) }}" class="group cursor-pointer flex gap-4">
-                <span class="text-lg font-black text-gray-100 group-hover:text-primary transition-colors min-w-[24px] text-center leading-none">
+                <span class="text-lg font-black text-gray-400 group-hover:text-primary transition-colors min-w-[24px] text-center leading-none">
                     {{ $index + 1 }}
                 </span>
                 <p class="text-xs font-bold text-gray-800 group-hover:text-primary transition-colors leading-relaxed line-clamp-2">
