@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Advertisement;
 use App\Models\Category;
+use App\Models\Comment;
 use App\Models\Gallery;
 use App\Models\News;
 use App\Models\User;
@@ -69,18 +70,32 @@ class DashboardController extends Controller
             $chartArticles[] = isset($statsMap[$date]) ? (int) $statsMap[$date]->total_articles : 0;
         }
 
-        // Category stats for bar chart
-        $categoryStats = Category::withCount(['news' => function ($q) {
+        // Category stats for bar chart - total views per category
+        $categoryStats = Category::withSum(['news as total_views' => function ($q) {
             $q->published();
-        }])->orderByDesc('news_count')->take(10)->get();
+        }], 'views')
+        ->orderByDesc('total_views')
+        ->take(10)
+        ->get();
 
         // Total views
         $totalViews = News::published()->sum('views');
 
+        // Total comments (approved)
+        $totalComments = Comment::where('is_approved', true)->count();
+
+        // Total videos (active)
+        $totalVideos = Video::where('is_active', true)->count();
+
+        // Total galleries (active)
+        $totalGalleries = Gallery::active()->count();
+
         // If redaktur role, show redaktur dashboard
         if ($user->isRedaktur()) {
             return view('admin.dashboard-redaktur', compact(
-                'totalNews', 'totalViews', 'totalUsers', 'recentNews', 'popularNews',
+                'totalNews', 'totalViews', 'totalUsers', 'totalComments',
+                'totalVideos', 'totalGalleries',
+                'recentNews', 'popularNews',
                 'chartLabels', 'chartViews', 'categoryStats'
             ));
         }
