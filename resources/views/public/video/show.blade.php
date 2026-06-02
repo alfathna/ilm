@@ -9,6 +9,11 @@
 
             {{-- Metadata --}}
             <div class="flex items-center gap-4 text-[11px] text-gray-500 mb-6 font-medium">
+                <span class="flex items-center gap-1.5">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                    {{ $video->creator->name ?? 'Administrator' }}
+                </span>
+                <span class="w-1 h-1 bg-gray-300 rounded-full"></span>
                 <span>{{ number_format($video->views) }} views</span>
                 <span class="w-1 h-1 bg-gray-300 rounded-full"></span>
                 <span>{{ $video->created_at->translatedFormat('l, j F Y | H:i') }} WIB</span>

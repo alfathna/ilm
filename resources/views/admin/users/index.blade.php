@@ -69,7 +69,6 @@
                     <th class="px-6 py-4 text-[10px] font-black text-gray-400 uppercase tracking-widest text-center">KECAMATAN</th>
                     <th class="px-6 py-4 text-[10px] font-black text-gray-400 uppercase tracking-widest text-center">STATUS</th>
                     <th class="px-6 py-4 text-[10px] font-black text-gray-400 uppercase tracking-widest text-center">TOTAL POST</th>
-                    <th class="px-6 py-4 text-[10px] font-black text-gray-400 uppercase tracking-widest text-center">TOTAL PENYIMAK</th>
                     @if(auth()->user()->isAdmin())
                     <th class="px-6 py-4 text-[10px] font-black text-gray-400 uppercase tracking-widest text-right">AKSI</th>
                     @endif
@@ -101,10 +100,9 @@
                         @endif
                     </td>
                     <td class="px-6 py-4 text-xs font-bold text-gray-700 text-center">
-                        {{ $user->news_count ?? 0 }}
-                    </td>
-                    <td class="px-6 py-4 text-xs font-bold text-gray-700 text-center">
-                        0
+                        <div>{{ $user->news_count ?? 0 }} Berita</div>
+                        <div class="text-[10px] text-gray-400 mt-0.5">{{ $user->videos_count ?? 0 }} Video</div>
+                        <div class="text-[10px] text-gray-400 mt-0.5">{{ $user->galleries_count ?? 0 }} Potret</div>
                     </td>
                     @if(auth()->user()->isAdmin())
                     <td class="px-6 py-4 text-right">
@@ -127,7 +125,7 @@
                 </tr>
                 @empty
                 <tr>
-                    <td colspan="{{ auth()->user()->isAdmin() ? '8' : '7' }}" class="px-6 py-12 text-center text-xs font-bold text-gray-400">
+                    <td colspan="{{ auth()->user()->isAdmin() ? '7' : '6' }}" class="px-6 py-12 text-center text-xs font-bold text-gray-400">
                         Tidak ada data redaktur ditemukan.
                     </td>
                 </tr>
